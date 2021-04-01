@@ -29,13 +29,13 @@ app.get('/contact', (req, res) => {
 app.post('/contact/send-message', upload.single('filename'), (req, res) => {
 
   const { author, sender, title, message} = req.body;
-  const filename = req.file;
+  const filenameFile = req.file;
 
-  if(author && sender && title && message && filename ) {
-    res.render('contact', { isSent: true, filename: originalname });
+  if(author && sender && title && message && filenameFile) {
+    res.render('contact', { isSent: true, inputname: filenameFile.originalname });
   }
   else {
-    res.render('contact', { isError: true });
+    res.render('contact', { isError: true, inputname: filenameFile.originalname });
   }
 });
 
